@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 import streamlit as st
 from PIL import Image
 
-from utils.streamlit_utils import hide_icons, hide_sidebar, remove_whitespaces
+from utils.streamlit_utils import hide_icons, hide_sidebar, remove_whitespaces, render_header, render_footer
 from streamlit_extras.switch_page_button import switch_page
 
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
@@ -14,7 +14,9 @@ hide_icons()
 hide_sidebar()
 remove_whitespaces()
 
-st.title("BlockVerify – Blockchain-powered certificate verification system")
+# Header
+render_header("BlockVerify – Blockchain-powered Certificate Verification System")
+
 st.write("")
 st.subheader("Select Your Role")
 
@@ -35,3 +37,6 @@ if clicked_institute:
 elif clicked_verifier:
     st.session_state.profile = "Verifier"
     switch_page('login')
+
+# Footer
+render_footer()

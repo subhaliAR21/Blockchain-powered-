@@ -1,14 +1,15 @@
 # BlockVerify – Blockchain-powered Certificate Verification System
 
 ## Overview
-BlockVerify is a decentralized application that leverages blockchain technology to provide a secure and tamper-proof certificate verification system. The project uses Ethereum smart contracts for certificate management, Streamlit for the frontend user interface, and Firebase for user authentication and data storage.
+BlockVerify is a decentralized application that leverages blockchain technology to provide a secure and tamper-proof certificate verification system. The project uses Ethereum smart contracts for certificate management, Streamlit for the frontend user interface, and Firebase for user authentication and data storage. It integrates IPFS for decentralized storage of certificate PDFs, ensuring immutability and trust.
 
 ## Features
 - Institute users can generate and upload certificates to IPFS and record them on the blockchain.
-- Verifiers can validate certificates by uploading PDFs or entering certificate IDs.
+- Verifiers can validate certificates by uploading PDFs, entering certificate IDs, or scanning QR codes.
 - Secure login and registration system with Firebase authentication.
 - Blockchain ensures immutability and trust in certificate verification.
-- User-friendly Streamlit web interface.
+- User-friendly Streamlit web interface with role-based access.
+- QR code generation and decoding for easy certificate verification.
 
 ## Repository Structure
 ```
@@ -16,19 +17,26 @@ BlockVerify is a decentralized application that leverages blockchain technology 
 ├── app.py                      # Main Streamlit app entry point
 ├── Dockerfile                  # Docker container configuration
 ├── README.md                   # Project overview and instructions
-├── .env                       # Environment variables (should be in .gitignore)
 ├── deployment_config.json      # Deployment configuration for contracts
 ├── truffle-config.js           # Truffle configuration for smart contract deployment
 ├── application/                # Backend and application logic
-├── pages/                     # Streamlit multi-page app pages
-├── utils/                     # Utility modules and helper functions
-├── contracts/                 # Solidity smart contracts
-├── migrations/                # Truffle migration scripts
+├── pages/                      # Streamlit multi-page app pages (login, verifier, institute, register)
+├── utils/                      # Utility modules and helper functions (certificate utils, Streamlit UI helpers)
+├── contracts/                  # Solidity smart contracts (Certification.sol)
+├── migrations/                 # Truffle migration scripts
 ├── build/                     # Compiled contract artifacts (auto-generated)
-├── db/                       # Database related files (e.g., Firebase integration)
-├── assets/                   # Static assets like images and logos
-└── test/                     # Test files (to be added)
+├── db/                        # Database related files (e.g., Firebase integration)
+├── assets/                    # Static assets like images and logos
+├── test/                      # Test files (to be added)
 ```
+
+## Technologies Used
+- Ethereum blockchain and Solidity smart contracts
+- Truffle framework for contract deployment
+- Streamlit for frontend UI
+- Firebase for authentication and user management
+- IPFS (e.g., Pinata) for decentralized file storage
+- Python libraries: web3.py, pdfplumber, reportlab, pyzbar
 
 ## Setup and Installation
 
@@ -70,12 +78,7 @@ BlockVerify is a decentralized application that leverages blockchain technology 
 ## Usage
 - Select your role (Institute or Verifier) on the landing page.
 - Institutes can generate certificates, which are saved as PDFs, uploaded to IPFS, and recorded on the blockchain.
-- Verifiers can upload certificate PDFs or enter certificate IDs to verify authenticity.
-
-## Environment Variables
-- `PINATA_API_KEY` and `PINATA_API_SECRET` for IPFS uploads.
-- Firebase credentials for authentication.
-- Ethereum node URL and contract addresses.
+- Verifiers can upload certificate PDFs, enter certificate IDs, or scan QR codes to verify authenticity.
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit pull requests.

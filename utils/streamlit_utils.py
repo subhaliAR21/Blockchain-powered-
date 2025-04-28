@@ -40,20 +40,97 @@ def hide_sidebar():
 def remove_whitespaces():
     st.markdown("""
         <style>
-               .css-18e3th9 {
-                    padding-top: 0rem;
-                    padding-bottom: 10rem;
-                    padding-left: 5rem;
-                    padding-right: 5rem;
-                }
-               .css-1d391kg {
-                    padding-top: 3.5rem;
-                    padding-right: 1rem;
-                    padding-bottom: 3.5rem;
-                    padding-left: 1rem;
-                }
-        </style>""", unsafe_allow_html=True)
+            /* Background image with overlay */
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-image: url('/assets/background.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+                color: #f0f0f0;
+            }
+            /* Overlay to darken background for readability */
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: -1;
+            }
+            /* Padding and margin adjustments */
+            .css-18e3th9 {
+                padding-top: 2rem !important;
+                padding-bottom: 5rem !important;
+                padding-left: 3rem !important;
+                padding-right: 3rem !important;
+            }
+            .css-1d391kg {
+                padding-top: 3.5rem !important;
+                padding-right: 1rem !important;
+                padding-bottom: 3.5rem !important;
+                padding-left: 1rem !important;
+            }
+            /* Button styling */
+            div.stButton > button {
+                background-color: #0078d4;
+                color: white;
+                border-radius: 8px;
+                padding: 10px 24px;
+                font-size: 16px;
+                font-weight: 600;
+                transition: background-color 0.3s ease;
+                border: none;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            div.stButton > button:hover {
+                background-color: #005a9e;
+                cursor: pointer;
+            }
+            /* Input box styling */
+            div.stTextInput > div > input {
+                border-radius: 6px;
+                border: 1px solid #ccc;
+                padding: 10px;
+                font-size: 16px;
+                transition: border-color 0.3s ease;
+            }
+            div.stTextInput > div > input:focus {
+                border-color: #0078d4;
+                outline: none;
+            }
+            /* Header styles */
+            .app-header {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #0078d4;
+                margin-bottom: 1rem;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            /* Footer styles */
+            .app-footer {
+                font-size: 0.9rem;
+                color: #888888;
+                text-align: center;
+                margin-top: 3rem;
+                padding-top: 1rem;
+                border-top: 1px solid #e1e1e1;
+            }
+        </style>
+    """, unsafe_allow_html=True)
 
 def is_valid_email(email: str) -> bool:
     email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return re.match(email_regex, email) is not None
+
+def render_header(title: str):
+    st.markdown(f'<h1 class="app-header">{title}</h1>', unsafe_allow_html=True)
+
+def render_footer():
+    st.markdown('<div class="app-footer">© 2025 BlockVerify. All rights reserved.</div>', unsafe_allow_html=True)

@@ -1,0 +1,66 @@
+Slide 1: Introduction
+- Project Name: BlockVerify – Blockchain-powered Certificate Verification System
+- Purpose: To provide a secure, decentralized, and tamper-proof certificate verification system using blockchain technology.
+- Overview: Combines Ethereum smart contracts, Streamlit frontend, and Firebase authentication for certificate management and verification.
+
+Slide 2: Architecture
+- Components:
+  - Blockchain: Ethereum smart contracts for immutable certificate storage and verification.
+  - Frontend: Streamlit web app for user interaction (Institutes and Verifiers).
+  - Firebase: User authentication and data storage.
+  - IPFS: Decentralized file storage for certificate PDFs.
+- Interaction flow diagram (to be created by user).
+
+Slide 3: Smart Contract
+- Certification.sol:
+  - Stores certificate details: UID, candidate name, course name, organization, IPFS hash.
+  - Functions:
+    - generateCertificate: Adds new certificate to blockchain.
+    - getCertificate: Retrieves certificate details.
+    - isVerified: Checks if certificate exists.
+- Ensures immutability and trust.
+
+Slide 4: Frontend Application
+- Built with Streamlit.
+- Role selection: Institute or Verifier.
+- Institutes can generate and upload certificates.
+- Verifiers can validate certificates via PDF upload, certificate ID, or QR code.
+- Multi-page app structure with login, registration, and verification pages.
+
+Slide 5: Certificate Generation and Verification
+- Certificate generation:
+  - PDF certificate created with candidate details and QR code.
+  - QR code encodes certificate ID (hash of certificate data).
+  - Certificate uploaded to IPFS; hash stored on blockchain.
+- Verification:
+  - Verifiers upload PDF or QR code or enter certificate ID.
+  - App extracts data, computes certificate ID, and verifies on blockchain.
+
+Slide 6: Technologies Used
+- Ethereum blockchain and Solidity smart contracts.
+- Truffle framework for contract deployment.
+- Streamlit for frontend UI.
+- Firebase for authentication.
+- IPFS (e.g., Pinata) for decentralized file storage.
+- Python libraries: web3.py, pdfplumber, reportlab, pyzbar.
+
+Slide 7: Setup and Usage
+- Prerequisites: Python 3.8+, Node.js, Truffle, Ganache, IPFS account, Firebase project.
+- Backend setup: Python virtual environment, install dependencies.
+- Smart contract deployment: Compile and migrate contracts using Truffle.
+- Run Streamlit app: `streamlit run app.py --server.port 8504`
+- Access app at `http://localhost:8504`.
+
+Slide 8: Demo and Screenshots
+- Include screenshots of:
+  - Role selection page.
+  - Login page.
+  - Certificate generation page.
+  - Certificate verification page.
+- Optionally, include flow diagrams of certificate lifecycle.
+
+Slide 9: Conclusion
+- BlockVerify provides a secure, decentralized certificate verification system.
+- Combines blockchain immutability with user-friendly UI.
+- Future work: Expand features, improve scalability, add analytics.
+- Contact information for support and contributions.

@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy requirements file
 COPY application/requirements.txt .
 
+# Install system dependencies for zbar
+RUN apt-get update && apt-get install -y libzbar0 && rm -rf /var/lib/apt/lists/*
+
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt

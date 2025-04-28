@@ -56,6 +56,9 @@ if selected == options[0]:
         pdf_file_path = "certificate.pdf"
         institute_logo_path = "assets/logo.jpg"
         with st.spinner("Generating certificate..."):
+            from reportlab.platypus import Image as RLImage
+            # Use RLImage explicitly to avoid conflict with PIL.Image
+            logo = RLImage(institute_logo_path, width=150, height=150)
             generate_certificate(pdf_file_path, uid, candidate_name, course_name, org_name, institute_logo_path)
 
         with st.spinner("Uploading certificate to IPFS..."):
@@ -67,6 +70,22 @@ if selected == options[0]:
         else:
             data_to_hash = f"{uid}{candidate_name}{course_name}{org_name}".encode('utf-8')
             certificate_id = hashlib.sha256(data_to_hash).hexdigest()
+
+            # Generate QR code image for download
+            import qrcode
+            import io
+            qr_data = certificate_id
+            qr_img = qrcode.make(qr_data)
+            buf = io.BytesIO()
+            qr_img.save(buf, format="PNG")
+            buf.seek(0)
+
+            st.download_button(
+                label="Download Certificate QR Code",
+                data=buf,
+                file_name=f"certificate_{certificate_id}_qr.png",
+                mime="image/png"
+            )
 
         try:
             with st.spinner("Recording certificate on blockchain..."):
